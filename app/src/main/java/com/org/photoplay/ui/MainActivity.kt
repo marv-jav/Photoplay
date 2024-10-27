@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.org.photoplay.ui.navigation.NavDestinations
 import com.org.photoplay.ui.screens.Splash
 import com.org.photoplay.ui.screens.movie_detail.MovieDetail
@@ -44,12 +46,16 @@ fun PhotoplayApp(modifier: Modifier = Modifier) {
                     Splash { navController.navigate(NavDestinations.MovieScreen.route) }
                 }
                 composable(NavDestinations.MovieScreen.route) {
-                    MovieScreen {
-                        navController.navigate(NavDestinations.MovieDetail.route)
+                    MovieScreen { movieId ->
+                        navController.navigate(NavDestinations.MovieDetail.withArgs(movieId))
                     }
                 }
-                composable(NavDestinations.MovieDetail.route) {
-                    MovieDetail()
+                composable(
+                    NavDestinations.MovieDetail.route,
+                    arguments = listOf(navArgument("movieId") { type = NavType.IntType })
+                ) { backStackEntry ->
+                    val movieId = backStackEntry.arguments?.getInt("movieId") ?: 0
+                    MovieDetail(movieId = movieId)
                 }
             }
         }

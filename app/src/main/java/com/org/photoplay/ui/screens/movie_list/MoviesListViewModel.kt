@@ -1,5 +1,6 @@
 package com.org.photoplay.ui.screens.movie_list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.org.photoplay.data.repository.NetworkState
@@ -39,6 +40,7 @@ class MoviesListViewModel @Inject constructor(
         viewModelScope.launch {
             _moviesState.value = NetworkState.Loading
             _moviesState.value = getPopularMoviesUC()
+            Log.d("TAG_VIEWMODEL", "getPop: ${_castState.value}")
         }
     }
 
@@ -46,6 +48,7 @@ class MoviesListViewModel @Inject constructor(
         viewModelScope.launch {
             _castState.value = NetworkState.Loading
             _castState.value = castRepo.getCast(movieId)
+            Log.d("TAG_VIEWMODEL", "getCast: ${_castState.value}")
         }
     }
 
@@ -53,6 +56,7 @@ class MoviesListViewModel @Inject constructor(
         viewModelScope.launch {
             _moviesDetailState.value = NetworkState.Loading
             _moviesDetailState.value = castRepo.getMovieDetails(movieId)
+            Log.d("TAG_VIEWMODEL", "getDeets: ${_moviesDetailState.value}")
         }
     }
 

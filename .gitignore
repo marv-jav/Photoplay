@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Ignore API keys file
+app/src/main/java/com/org/photoplay/data/network/ApiConstants.kt

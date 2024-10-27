@@ -32,7 +32,7 @@ class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService
     override suspend fun getCast(movieId: Int): NetworkState<Cast> {
         return try {
             val response = apiService.getCast(movieId)
-            if (response.isSuccessful) {
+            if (response.isSuccessful && response.body() != null) {
                 val cast = response.body()
                 NetworkState.Success(cast!!)
             } else {
@@ -48,7 +48,7 @@ class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService
     override suspend fun getMovieDetails(movieId: Int): NetworkState<MovieDetail> {
         return try {
             val response = apiService.getMovieDetails(movieId)
-            if (response.isSuccessful) {
+            if (response.isSuccessful && response.body() != null) {
                 val movieDetails = response.body()
                 NetworkState.Success(movieDetails!!)
             } else {

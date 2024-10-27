@@ -15,6 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.org.photoplay.domain.model.Movie
@@ -54,7 +55,7 @@ fun CastItem(modifier: Modifier = Modifier, url: String, name: String) {
                 .width(96.dp),
             url = "https://image.tmdb.org/t/p/w500${url}"
         )
-        Text(name, modifier = Modifier.padding(top = 6.dp))
+        Text(name, modifier = Modifier.padding(top = 6.dp), fontSize = 12.sp)
     }
 }
 
