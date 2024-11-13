@@ -54,7 +54,7 @@ fun RegisterScreen(modifier: Modifier = Modifier) {
                     containerColor = Yellow
                 )
             ) {
-                Text("REGISTER", color = Black)
+                Text("Sign Up", color = Black)
             }
         }
     }
